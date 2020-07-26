@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Homepage from './components/homepage';
 import Shop from './components/shop';
 import Header from './components/header';
-import SignInAndSignOut from './components/sign-in-and-sign-out';
+import SignInAndSignOut from './components/sign-in-and-sign-up';
 
 import './App.css';
 
