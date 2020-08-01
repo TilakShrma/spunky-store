@@ -6,7 +6,7 @@ import Shop from './components/shop';
 import Header from './components/header';
 import SignInAndSignOut from './components/sign-in-and-sign-up';
 
-import {auth} from './utlis/firebase';
+import {auth, createUserProfile} from './utlis/firebase';
 
 import './App.css';
 
@@ -22,8 +22,27 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user})
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      
+      if (userAuth) {
+        const userRef = await createUserProfile(userAuth);
+
+        userRef.onSnapshot(snapshot => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          })
+        });
+
+        
+      } else {
+        this.setState({
+          currentUser: userAuth
+        })
+      }
+        console.log(this.state)
     })
   }
 
