@@ -4,7 +4,7 @@ import SignUp from '../sign-up';
 
 import './sign-in-and-sign-up.scss';
 
-const SignInAndSignOut = () => {
+const SignInAndSignUp = () => {
     return (
         <div className='sign-in-and-sign-up'>
             <SignIn />
@@ -14,4 +14,4 @@ const SignInAndSignOut = () => {
     )
 };
 
-export default SignInAndSignOut;
+export default SignInAndSignUp;
