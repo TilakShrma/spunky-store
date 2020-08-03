@@ -66,10 +66,23 @@ class App extends Component {
   }
 }
 
+/**
+ * takes root reducer as param
+ * we can also destructure the specific data we need from it
+ * i.e. user in this case
+ */
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser,
 })
 
+/**
+ * Map dispatch method to each action
+ * e.g: if we are setting current user we will call
+ * setCurrentUser prop method and it will in turn
+ * call dispatch method with SET_CURRENT_USER action
+ * call will go to the root reducer initially and from there 
+ * reducer which accepts that action type will get hit.
+ */
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
 })
