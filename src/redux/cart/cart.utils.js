@@ -20,3 +20,17 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 export const clearItemFromCart = (cartItems, itemToClear) => (
     cartItems.filter(cartItem => cartItem.id !== itemToClear.id)
 );
+
+export const removeItemFromCart = (cartItems, itemToRemove) => {
+    const isExisting = cartItems.find(cartItem => cartItem.id === itemToRemove.id);
+
+    if (isExisting && itemToRemove.quantity === 1) {
+        return clearItemFromCart(cartItems, itemToRemove);
+    }
+
+    return cartItems.map(cartItem => (
+        cartItem.id === itemToRemove.id)
+        ? { ...cartItem, quantity: cartItem.quantity - 1}
+        : cartItem
+    );
+};
