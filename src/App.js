@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
 import Homepage from './components/homepage';
 import Shop from './components/shop';
@@ -10,6 +11,7 @@ import SignInAndSignUp from './components/sign-in-and-sign-up';
 import {auth, createUserProfile} from './utlis/firebase';
 
 import {setCurrentUser} from './redux/user/user.actions';
+import {selectCurrentUser} from './redux/user/user.selectors';
 
 import './App.css';
 
@@ -71,8 +73,8 @@ class App extends Component {
  * we can also destructure the specific data we need from it
  * i.e. user in this case
  */
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 })
 
 /**
