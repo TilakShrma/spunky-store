@@ -16,3 +16,7 @@ export const addItemToCart = (cartItems, itemToAdd) => {
     // if item is not in cart assign a base quantity 1
     return [...cartItems, {...itemToAdd, quantity: 1}];
 };
+
+export const clearItemFromCart = (cartItems, itemToClear) => (
+    cartItems.filter(cartItem => cartItem.id !== itemToClear.id)
+);
