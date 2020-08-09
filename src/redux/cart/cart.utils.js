@@ -16,9 +16,3 @@ export const addItemToCart = (cartItems, itemToAdd) => {
     // if item is not in cart assign a base quantity 1
     return [...cartItems, {...itemToAdd, quantity: 1}];
 };
-
-export const getTotalCartItems = (cartItems) => {
-    return (
-        cartItems.reduce((initialCount, item) => initialCount + item.quantity, 0)
-    )
-};
