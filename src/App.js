@@ -7,6 +7,7 @@ import Homepage from './components/homepage';
 import Shop from './components/shop';
 import Header from './components/header';
 import SignInAndSignUp from './components/sign-in-and-sign-up';
+import Checkout from './components/checkout';
 
 import {auth, createUserProfile} from './utlis/firebase';
 
@@ -62,6 +63,7 @@ class App extends Component {
           <Route component={Homepage} path='/' exact/>
           <Route component={Shop} path='/shop' exact/>
           <Route path='/signin' render={redirectAfterSignIn} exact/>
+          <Route path='/checkout' component={Checkout} exact />
         </Switch>
       </div>
     );
