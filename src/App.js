@@ -61,7 +61,7 @@ class App extends Component {
       <Header/>
         <Switch>
           <Route component={Homepage} path='/' exact/>
-          <Route component={Shop} path='/shop' exact/>
+          <Route component={Shop} path='/shop'/>
           <Route path='/signin' render={redirectAfterSignIn} exact/>
           <Route path='/checkout' component={Checkout} exact />
         </Switch>
