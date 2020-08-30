@@ -1,49 +1,50 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {createStructuredSelector} from 'reselect';
 
 import {auth} from '../../utlis/firebase';
 
 import {ReactComponent as Logo} from '../../assets/icons/crown.svg';
+
 import CartIcon from '../cart-icon';
 import CartDropdown from '../cart-dropdown';
+
 import {selectCartHidden} from '../../redux/cart/cart.selectors';
 import {selectCurrentUser} from '../../redux/user/user.selectors';
 
-import './header.scss';
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
 
 
 const Header = ({ currentUser,  cartHidden}) => {
     return (
-        <div className='header'>
-            <Link to='/' className='logo-container'>
+        <HeaderContainer>
+            <LogoContainer to='/'>
                 <Logo className='logo'/>
-            </Link>
-            <div className='options'>
-                <Link className='option' to='/shop'>
+            </LogoContainer>
+            <OptionsContainer>
+                <OptionLink to='/shop'>
                     SHOP
-                </Link>
-                <Link className='option' to='/contact'>
+                </OptionLink>
+                <OptionLink to='/contact'>
                     CONTACT
-                </Link>
+                </OptionLink>
                 {
                     currentUser
-                    ? <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
+                    ? <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink>
                     : (
-                        <Link className='option' to='/signin'>SIGN IN</Link>
+                        <OptionLink to='/signin'>SIGN IN</OptionLink>
                     )
                 }
                 <CartIcon/>
-            </div>
+            </OptionsContainer>
             {
                 !cartHidden
                 ? <CartDropdown />
                 : null
             }
-        </div>
-    )
-;}
+        </HeaderContainer>
+    );
+};
 
 // state will be the root reducer
 // create structured selector will automatically pass root level state to all selectors 
